@@ -3,11 +3,9 @@ using System.Linq;
 using System.Net.Mime;
 using System.Text;
 
-namespace HomeWorks
-{
     class Task1 //Инвертировать входящую строку
     {
-        private const int tryCount = 100000000; //10 млн: 1-6 сек; 100 млн: 10-120 сек; 1 млрд: 2-20 минут 
+        private const int tryCount = 10000000; //10 млн: 1-6 сек; 100 млн: 10-120 сек; 1 млрд: 2-20 минут 
         static void Main()
         {
 
@@ -16,6 +14,7 @@ namespace HomeWorks
             string resultString = "";
             
             Console.WriteLine(DateTime.Now + ": " + "Incoming string: " + incomingString);
+            var startTime = System.Diagnostics.Stopwatch.StartNew();
 
             //resultString = TryString(incomingString);
             resultString = TryStringBuilderNew(incomingString);
@@ -120,4 +119,3 @@ namespace HomeWorks
             return resultString;
         }
     }
-}
