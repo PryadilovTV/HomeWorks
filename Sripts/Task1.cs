@@ -5,12 +5,13 @@ using System.Text;
 
 namespace HomeWorks
 {
-    class Task1
+    class Task1 //Инвертировать входящую строку
     {
         private const int tryCount = 100000000; //10 млн: 1-6 сек; 100 млн: 10-120 сек; 1 млрд: 2-20 минут 
         static void Main()
         {
-            //incomingString = Console.ReadLine("Введите что-нибудь");
+
+            //string incomingString = Console.ReadLine("Введите что-нибудь");
             string incomingString = "qwertyuiop asdfghjkl zxcvbnm";
             string resultString = "";
             
@@ -19,6 +20,7 @@ namespace HomeWorks
             //resultString = TryString(incomingString);
             resultString = TryStringBuilder(incomingString);
             resultString = TryArray(incomingString);
+
 
         }
 
@@ -44,15 +46,14 @@ namespace HomeWorks
         {
             
             StringBuilder sb = new StringBuilder(incomingString, 32);
-            StringBuilder resultSb = new StringBuilder(32);
+            StringBuilder resultSb = new StringBuilder(incomingString, 32);
 
             for (int k = 1; k <= tryCount; k++)
             {
-                resultSb = new StringBuilder(32);
-                
-                for (int i = sb.Length - 1; i >= 0; i--)
+                for (int i = 0; i <= sb.Length - 1; i++)
                 {
-                    resultSb.Append(sb[i]);
+                    resultSb[i] = sb[sb.Length - i - 1];
+                    //resultSb.Append(sb[i]);
                 }
 
             }
