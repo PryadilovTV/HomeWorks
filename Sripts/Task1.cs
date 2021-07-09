@@ -18,7 +18,8 @@ namespace HomeWorks
             Console.WriteLine(DateTime.Now + ": " + "Incoming string: " + incomingString);
 
             //resultString = TryString(incomingString);
-            resultString = TryStringBuilder(incomingString);
+            resultString = TryStringBuilderNew(incomingString);
+            resultString = TryStringBuilderCopy(incomingString);
             resultString = TryArray(incomingString);
 
 
@@ -42,7 +43,30 @@ namespace HomeWorks
             Console.WriteLine(DateTime.Now + ": " + "String: " + resultString);
             return resultString;
         }
-        static string TryStringBuilder(String incomingString)
+        static string TryStringBuilderNew(String incomingString)
+        {
+            
+            StringBuilder sb = new StringBuilder(incomingString, 32);
+            StringBuilder resultSb = new StringBuilder(32);
+
+            for (int k = 1; k <= tryCount; k++)
+            {
+                resultSb = new StringBuilder(32);
+                
+                for (int i = sb.Length - 1; i >= 0; i--)
+                {
+                    resultSb.Append(sb[i]);
+                }
+
+            }
+
+            string resultString = resultSb.ToString();
+            
+            Console.WriteLine(DateTime.Now + ": " + "String builder new: " + resultString);
+            return resultString;
+        }
+        
+        static string TryStringBuilderCopy(String incomingString)
         {
             
             StringBuilder sb = new StringBuilder(incomingString, 32);
@@ -53,16 +77,16 @@ namespace HomeWorks
                 for (int i = 0; i <= sb.Length - 1; i++)
                 {
                     resultSb[i] = sb[sb.Length - i - 1];
-                    //resultSb.Append(sb[i]);
                 }
 
             }
 
             string resultString = resultSb.ToString();
             
-            Console.WriteLine(DateTime.Now + ": " + "String builder: " + resultString);
+            Console.WriteLine(DateTime.Now + ": " + "String builder copy: " + resultString);
             return resultString;
         }
+
         static string TryArray(String incomingString)
         {
             string resultString = "";
