@@ -13,7 +13,7 @@ class Task1 : MonoBehaviour //Инвертировать входящую стр
         {
             Debug.Log("TRY_COUNT = " + TRY_COUNT + ". Incoming string: " + incomingString);
             
-            //Inversion(TryString, "String"); //раз в 10 дольше остального
+            //Inversion(TryString, "String"); //раз в 10 дольше остального, убрал нафиг
             Inversion(TryStringBuilderNew, "StringBuilder (append)");
             Inversion(TryStringBuilderCopy, "StringBuilder (copy)");
             Inversion(TryArray, "Array");
