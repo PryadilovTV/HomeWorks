@@ -4,16 +4,18 @@ using UnityEngine;
 
 class Task1 : MonoBehaviour //Инвертировать входящую строку
     {
-        public string incomingString = "qwertyuiop asdfghjkl zxcvbnm";
+        [SerializeField]
+        private string incomingString = "qwertyuiop asdfghjkl zxcvbnm";
         
-        private const int TRY_COUNT = 10000000; //1 млн: около 1 сек; 10 млн: 10-120 сек; 100 млн: 100-2000 сек
+        [SerializeField]
+        private int TRY_COUNT = 10000000; //1 млн: около 1 сек; 10 млн: 10-120 сек; 100 млн: 100-2000 сек
         delegate string Invert();            
 
         void Start()
         {
-            Debug.Log("TRY_COUNT = " + TRY_COUNT + ". Incoming string: " + incomingString);
+            Debug.Log("TRY_COUNT = " + TRY_COUNT/1000000 + " mln" + ". Incoming string: " + incomingString);
             
-            //Inversion(TryString, "String"); //раз в 10 дольше остального, убрал нафиг
+            Inversion(TryString, "String"); //раз в 10 дольше остального, убрал нафиг
             Inversion(TryStringBuilderNew, "StringBuilder (append)");
             Inversion(TryStringBuilderCopy, "StringBuilder (copy)");
             Inversion(TryStringBuilderHalf, "StringBuilder (half)");
@@ -80,7 +82,6 @@ class Task1 : MonoBehaviour //Инвертировать входящую стр
             var resultString = "";
             var sb = new StringBuilder(incomingString, incomingString.Length);
             var resultSb = new StringBuilder(incomingString, incomingString.Length);
-            char a;
 
             for (int k = 1; k <= TRY_COUNT; k++)
             {
