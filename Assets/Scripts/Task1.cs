@@ -2,7 +2,7 @@
 using System.Text;
 using UnityEngine;
 
-class Task1 : MonoBehaviour //Инвертировать входящую строку
+class Task1: MonoBehaviour  //Инвертировать входящую строку
     {
         [SerializeField]
         private string incomingString = "qwertyuiop asdfghjkl zxcvbnm";
@@ -15,7 +15,7 @@ class Task1 : MonoBehaviour //Инвертировать входящую стр
         {
             Debug.Log("TRY_COUNT = " + TRY_COUNT/1000000 + " mln" + ". Incoming string: " + incomingString);
             
-            Inversion(TryString, "String"); //раз в 10 дольше остального, убрал нафиг
+            //Inversion(TryString, "String"); //раз в 10 дольше остального, убрал нафиг
             Inversion(TryStringBuilderNew, "StringBuilder (append)");
             Inversion(TryStringBuilderCopy, "StringBuilder (copy)");
             Inversion(TryStringBuilderHalf, "StringBuilder (half)");
@@ -24,9 +24,11 @@ class Task1 : MonoBehaviour //Инвертировать входящую стр
 
         void Inversion(Func<string> invert, string discription)
         {
+            var resultString = invert.Invoke();
+
             var startTime = System.Diagnostics.Stopwatch.StartNew();
             
-            var resultString = invert.Invoke();
+            for (int i = 1; i <= TRY_COUNT; i++) resultString = invert.Invoke();
             
             startTime.Stop();
             var resultTime = startTime.Elapsed;
@@ -40,39 +42,27 @@ class Task1 : MonoBehaviour //Инвертировать входящую стр
         
         public string TryString()
         {
-            string resultString = "";
+            var resultString = "";
             
-            for (int k = 1; k <= TRY_COUNT; k++)
+            for (int i = incomingString.Length - 1; i >= 0; i--)
             {
-                resultString = "";
-
-                for (int i = incomingString.Length - 1; i >= 0; i--)
-                {
-                    resultString += incomingString[i];
-                }
-                
+                resultString += incomingString[i];
             }
             
             return resultString;
         }
-
+        
         string TryStringBuilderNew()
         {
             var resultString = "";
             var sb = new StringBuilder(incomingString, incomingString.Length);
             var resultSb = new StringBuilder(incomingString.Length);
-
-            for (int k = 1; k <= TRY_COUNT; k++)
-            {
-                sb = new StringBuilder(incomingString, incomingString.Length);
-                resultSb = new StringBuilder(incomingString.Length);
                 
-                for (int i = sb.Length - 1; i >= 0; i--)
-                {
-                    resultSb.Append(sb[i]);
-                }
-                resultString = resultSb.ToString();
+            for (int i = sb.Length - 1; i >= 0; i--)
+            {
+                resultSb.Append(sb[i]);
             }
+            resultString = resultSb.ToString();
             
             return resultString;
         }
@@ -83,18 +73,12 @@ class Task1 : MonoBehaviour //Инвертировать входящую стр
             var sb = new StringBuilder(incomingString, incomingString.Length);
             var resultSb = new StringBuilder(incomingString, incomingString.Length);
 
-            for (int k = 1; k <= TRY_COUNT; k++)
-            {
-                sb = new StringBuilder(incomingString, incomingString.Length);
-                resultSb = new StringBuilder(incomingString, incomingString.Length);
-
                 for (int i = 0; i <= sb.Length - 1; i++)
                 {
                     resultSb[i] = sb[sb.Length - i - 1];
                 }
 
                 resultString = resultSb.ToString();
-            }
             
             return resultString;
         }
@@ -105,19 +89,14 @@ class Task1 : MonoBehaviour //Инвертировать входящую стр
             var sb = new StringBuilder(incomingString, incomingString.Length);
             char a;
 
-            for (int k = 1; k <= TRY_COUNT; k++)
+            for (int i = 0; i <= sb.Length/2; i++)
             {
-                sb = new StringBuilder(incomingString, incomingString.Length);
-
-                for (int i = 0; i <= sb.Length/2; i++)
-                {
-                    a = sb[i];
-                    sb[i] = sb[sb.Length - i - 1];
-                    sb[sb.Length - i - 1] = a;
-                }
-
-                resultString = sb.ToString();
+                a = sb[i];
+                sb[i] = sb[sb.Length - i - 1];
+                sb[sb.Length - i - 1] = a;
             }
+
+            resultString = sb.ToString();
             
             return resultString;
         }
@@ -127,26 +106,23 @@ class Task1 : MonoBehaviour //Инвертировать входящую стр
             var resultString = "";
             char a;
             
-            for (int k = 1; k <= TRY_COUNT-1; k++)
+            Char[] chars = new Char[incomingString.Length];
+
+            for (int i = incomingString.Length - 1; i >= 0; i--)
             {
-                Char[] chars = new Char[incomingString.Length];
-
-                for (int i = incomingString.Length - 1; i >= 0; i--)
-                {
-                    chars[i] = incomingString[i];
-                }
-                
-                for (int i = 0; i <= incomingString.Length / 2; i++)
-                {
-                    a = chars[i];
-                    chars[i] = chars[incomingString.Length - i - 1];
-                    chars[incomingString.Length - i - 1] = a;
-                }
-
-                StringBuilder sb = new StringBuilder(32);
-                sb.Append(chars);
-                resultString = sb.ToString();
+                chars[i] = incomingString[i];
             }
+            
+            for (int i = 0; i <= incomingString.Length / 2; i++)
+            {
+                a = chars[i];
+                chars[i] = chars[incomingString.Length - i - 1];
+                chars[incomingString.Length - i - 1] = a;
+            }
+
+            StringBuilder sb = new StringBuilder(32);
+            sb.Append(chars);
+            resultString = sb.ToString();
             
             return resultString;
         }
