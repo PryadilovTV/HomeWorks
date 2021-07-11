@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 
@@ -8,27 +9,28 @@ class Task1: MonoBehaviour  //Инвертировать входящую стр
         private string incomingString = "qwertyuiop asdfghjkl zxcvbnm";
         
         [SerializeField]
-        private int TRY_COUNT = 10000000; //1 млн: около 1 сек; 10 млн: 10-120 сек; 100 млн: 100-2000 сек
+        private int tryCount = 10000000; //1 млн: около 1 сек; 10 млн: 10-120 сек; 100 млн: 100-2000 сек
         delegate string Invert();            
 
         void Start()
         {
-            Debug.Log("TRY_COUNT = " + TRY_COUNT/1000000 + " mln" + ". Incoming string: " + incomingString);
+            Debug.Log("tryCount = " + tryCount/1000000 + " mln" + ". Incoming string: " + incomingString);
             
-            //Inversion(TryString, "String"); //раз в 10 дольше остального, убрал нафиг
-            Inversion(TryStringBuilderNew, "StringBuilder (append)");
-            Inversion(TryStringBuilderCopy, "StringBuilder (copy)");
-            Inversion(TryStringBuilderHalf, "StringBuilder (half)");
-            Inversion(TryArray, "Array");
+            //Inversion(TryString, "String");                                   //80 сек
+            Inversion(TryStringBuilderNew, "StringBuilder (append)");   //11 сек
+            Inversion(TryStringBuilderCopy, "StringBuilder (copy)");    //15 сек
+            Inversion(TryStringBuilderHalf, "StringBuilder (half)");    //12 сек
+            Inversion(TryArray, "Array (half)");                        //9 сек
+            //Inversion(TryArrayReverse, "Array (reverse)");                    //240 сек!
         }
 
-        void Inversion(Func<string> invert, string discription)
+        private void Inversion(Func<string> invert, string discription)
         {
-            var resultString = invert.Invoke();
+            var resultString = "";
 
             var startTime = System.Diagnostics.Stopwatch.StartNew();
             
-            for (int i = 1; i <= TRY_COUNT; i++) resultString = invert.Invoke();
+            for (int i = 1; i <= tryCount; i++) resultString = invert.Invoke();
             
             startTime.Stop();
             var resultTime = startTime.Elapsed;
@@ -40,7 +42,7 @@ class Task1: MonoBehaviour  //Инвертировать входящую стр
             Debug.Log(elapsedTime + ": " + discription + ". Result: " + resultString);
         }
         
-        public string TryString()
+        private string TryString()
         {
             var resultString = "";
             
@@ -52,7 +54,7 @@ class Task1: MonoBehaviour  //Инвертировать входящую стр
             return resultString;
         }
         
-        string TryStringBuilderNew()
+        private string TryStringBuilderNew()
         {
             var resultString = "";
             var sb = new StringBuilder(incomingString, incomingString.Length);
@@ -67,7 +69,7 @@ class Task1: MonoBehaviour  //Инвертировать входящую стр
             return resultString;
         }
         
-        string TryStringBuilderCopy()
+        private string TryStringBuilderCopy()
         {
             var resultString = "";
             var sb = new StringBuilder(incomingString, incomingString.Length);
@@ -83,7 +85,7 @@ class Task1: MonoBehaviour  //Инвертировать входящую стр
             return resultString;
         }
 
-        string TryStringBuilderHalf()
+        private string TryStringBuilderHalf()
         {
             var resultString = "";
             var sb = new StringBuilder(incomingString, incomingString.Length);
@@ -101,7 +103,7 @@ class Task1: MonoBehaviour  //Инвертировать входящую стр
             return resultString;
         }
         
-        string TryArray()
+        private string TryArray()
         {
             var resultString = "";
             char a;
@@ -112,7 +114,7 @@ class Task1: MonoBehaviour  //Инвертировать входящую стр
             {
                 chars[i] = incomingString[i];
             }
-            
+
             for (int i = 0; i <= incomingString.Length / 2; i++)
             {
                 a = chars[i];
@@ -126,4 +128,25 @@ class Task1: MonoBehaviour  //Инвертировать входящую стр
             
             return resultString;
         }
+        
+        private string TryArrayReverse()
+        {
+            var resultString = "";
+            
+            Char[] chars = new Char[incomingString.Length];
+
+            for (int i = incomingString.Length - 1; i >= 0; i--)
+            {
+                chars[i] = incomingString[i];
+            }
+
+            Array.Reverse(chars);
+            
+            StringBuilder sb = new StringBuilder(32);
+            sb.Append(chars);
+            resultString = sb.ToString();
+            
+            return resultString;
+        }
+        
     }
