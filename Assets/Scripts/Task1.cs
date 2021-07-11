@@ -6,7 +6,7 @@ class Task1 : MonoBehaviour //Инвертировать входящую стр
     {
         public string incomingString = "qwertyuiop asdfghjkl zxcvbnm";
         
-        private const int TRY_COUNT = 10000000; //10 млн: 2-10 сек; 100 млн: 10-120 сек; 1 млрд: 2-20 минут
+        private const int TRY_COUNT = 10000000; //1 млн: около 1 сек; 10 млн: 10-120 сек; 100 млн: 100-2000 сек
         delegate string Invert();            
 
         void Start()
@@ -16,6 +16,7 @@ class Task1 : MonoBehaviour //Инвертировать входящую стр
             //Inversion(TryString, "String"); //раз в 10 дольше остального, убрал нафиг
             Inversion(TryStringBuilderNew, "StringBuilder (append)");
             Inversion(TryStringBuilderCopy, "StringBuilder (copy)");
+            Inversion(TryStringBuilderHalf, "StringBuilder (half)");
             Inversion(TryArray, "Array");
         }
 
@@ -52,60 +53,87 @@ class Task1 : MonoBehaviour //Инвертировать входящую стр
             
             return resultString;
         }
+
         string TryStringBuilderNew()
         {
-            StringBuilder sb = new StringBuilder(incomingString, 32);
-            StringBuilder resultSb = new StringBuilder(32);
+            var resultString = "";
+            var sb = new StringBuilder(incomingString, incomingString.Length);
+            var resultSb = new StringBuilder(incomingString.Length);
 
             for (int k = 1; k <= TRY_COUNT; k++)
             {
-                resultSb = new StringBuilder(32);
+                sb = new StringBuilder(incomingString, incomingString.Length);
+                resultSb = new StringBuilder(incomingString.Length);
                 
                 for (int i = sb.Length - 1; i >= 0; i--)
                 {
                     resultSb.Append(sb[i]);
                 }
+                resultString = resultSb.ToString();
             }
-
-            string resultString = resultSb.ToString();
             
             return resultString;
         }
         
         string TryStringBuilderCopy()
         {
-            
-            StringBuilder sb = new StringBuilder(incomingString, 32);
-            StringBuilder resultSb = new StringBuilder(incomingString, 32);
+            var resultString = "";
+            var sb = new StringBuilder(incomingString, incomingString.Length);
+            var resultSb = new StringBuilder(incomingString, incomingString.Length);
+            char a;
 
             for (int k = 1; k <= TRY_COUNT; k++)
             {
+                sb = new StringBuilder(incomingString, incomingString.Length);
+                resultSb = new StringBuilder(incomingString, incomingString.Length);
+
                 for (int i = 0; i <= sb.Length - 1; i++)
                 {
                     resultSb[i] = sb[sb.Length - i - 1];
                 }
 
+                resultString = resultSb.ToString();
             }
-
-            string resultString = resultSb.ToString();
             
             return resultString;
         }
 
+        string TryStringBuilderHalf()
+        {
+            var resultString = "";
+            var sb = new StringBuilder(incomingString, incomingString.Length);
+            char a;
+
+            for (int k = 1; k <= TRY_COUNT; k++)
+            {
+                sb = new StringBuilder(incomingString, incomingString.Length);
+
+                for (int i = 0; i <= sb.Length/2; i++)
+                {
+                    a = sb[i];
+                    sb[i] = sb[sb.Length - i - 1];
+                    sb[sb.Length - i - 1] = a;
+                }
+
+                resultString = sb.ToString();
+            }
+            
+            return resultString;
+        }
+        
         string TryArray()
         {
-            string resultString = "";
+            var resultString = "";
             char a;
             
-            Char[] chars = new Char[incomingString.Length];
-
-            for (int i = incomingString.Length - 1; i >= 0; i--)
-            {
-                chars[i] = incomingString[i];
-            }
-
             for (int k = 1; k <= TRY_COUNT-1; k++)
             {
+                Char[] chars = new Char[incomingString.Length];
+
+                for (int i = incomingString.Length - 1; i >= 0; i--)
+                {
+                    chars[i] = incomingString[i];
+                }
                 
                 for (int i = 0; i <= incomingString.Length / 2; i++)
                 {
@@ -113,12 +141,10 @@ class Task1 : MonoBehaviour //Инвертировать входящую стр
                     chars[i] = chars[incomingString.Length - i - 1];
                     chars[incomingString.Length - i - 1] = a;
                 }
-                
-            }
 
-            for (int i = 0; i <= incomingString.Length - 1; i++)
-            {
-                resultString += chars[i];
+                StringBuilder sb = new StringBuilder(32);
+                sb.Append(chars);
+                resultString = sb.ToString();
             }
             
             return resultString;
