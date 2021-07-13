@@ -24,6 +24,7 @@ using System.Linq;
 
 public class Task2 : MonoBehaviour
 {
+    [SerializeField] private Scriptable scriptable;
     void Start()
     {
         /*
@@ -43,8 +44,9 @@ public class Task2 : MonoBehaviour
         Debug.Log(arrayData.Length);
         */
 
-        /*
+        
         //List
+        /*
         var listData = new List<OurData>();
         
         Debug.Log(listData.Count);
@@ -78,6 +80,27 @@ public class Task2 : MonoBehaviour
         Debug.Log(dictData.Count);
         */
 
+        //List Scriptable
+        Debug.Log(scriptable.listData.Count);
+        AppendDataScriptable(ref scriptable.listData, new OurData("1", "12345", 5));
+        AppendDataScriptable(ref scriptable.listData, new OurData("2", "23456", 2));
+        AppendDataScriptable(ref scriptable.listData, new OurData("3", "34567", 4));
+        AppendDataScriptable(ref scriptable.listData, new OurData("2", "45678", 12));
+        Debug.Log(scriptable.listData.Count);
+     
+        var neededData = SearchDataScriptable(scriptable.listData, "6");
+        if (neededData == null)
+        {
+            Debug.Log("can't find data");
+        }
+        else
+        {
+            Debug.Log(neededData.Data);
+        }
+        DeleteDataScriptable(ref scriptable.listData, "6");
+        Debug.Log(scriptable.listData.Count);
+        
+        
     }
 
     private void AppendData(ref OurData[] arrayData, OurData newData)
@@ -94,6 +117,11 @@ public class Task2 : MonoBehaviour
         dictData.Add(newData.Uid, newData);
     }
 
+    private void AppendDataScriptable(ref List<OurData> listData, OurData newData)
+    {
+        listData.Add(newData);
+    }
+    
     private OurData SearchData(OurData[] arrayData, string uid)
     {
         for (int i = 0; i < arrayData.Length - 1; i++)
@@ -108,10 +136,11 @@ public class Task2 : MonoBehaviour
     }
     private OurData SearchData(List<OurData> listData, string uid)
     {
-
+        
+        
         var selectedOurData = 
             from ourData in listData
-            where string.Equals(ourData.Uid, uid)
+            where ourData.Uid == uid
             select ourData;
 
         if (selectedOurData.Any())
@@ -119,11 +148,12 @@ public class Task2 : MonoBehaviour
             return selectedOurData.ElementAt(0);
         }
         
+        
 
         /*
         for (int i = 0; i < listData.Count - 1; i++)
         {
-            if (string.Equals(listData[i].Uid, uid))
+            if (listData[i].Uid == uid)
             {
                 return listData[i];
             }
@@ -137,7 +167,11 @@ public class Task2 : MonoBehaviour
     {
         return dictData[uid];
     }
-
+    private OurData SearchDataScriptable(List<OurData> listData, string uid)
+    {
+        return listData.Find(x => x.Uid == uid);
+    }
+    
     private void DeleteData(ref OurData[] arrayData, string uid)
     {
         for (int i = 0; i < arrayData.Length; i++)
@@ -179,35 +213,10 @@ public class Task2 : MonoBehaviour
     {
         dictData.Remove(uid);
     }
+
+    private void DeleteDataScriptable(ref List<OurData> listData, string uid)
+    {
+        listData.RemoveAll(x => x.Uid == uid);
+    }
 }
 
-public class OurData
-{
-    private string _uid;
-    private string _data;
-    private int _count;
-
-    public string Uid
-    {
-        get { return _uid; }
-        set { _uid = value; }
-    }
-    public string Data
-    {
-        get { return _data; }
-        set { _data = value; }
-    }
-    public int Count
-    {
-        get { return _count; }
-        set { _count = value; }
-    }
-    public OurData() {}
-    public OurData(string uid, string data, int count)
-    {
-        _uid = uid;
-        _data = data;
-        _count = count;
-    }
-
-}
