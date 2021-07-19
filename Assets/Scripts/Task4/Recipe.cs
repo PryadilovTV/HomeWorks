@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(menuName = "Settings/Task4/Recipe", fileName = "Recipe")]
-
 [Serializable]
-public class Recipe : ScriptableObject
+public class Recipe
 {
     [SerializeField] private string name;
 
@@ -15,5 +13,5 @@ public class Recipe : ScriptableObject
 
     [SerializeField] private int duration;
 
-    [SerializeField] private List<Ingridient> ingridients;
+    [SerializeField] private List<Ingredient> ingredients;
 }

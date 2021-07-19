@@ -1,28 +1,21 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-[CreateAssetMenu(menuName = "Settings/Task4/Station", fileName = "Station")]
-public class Station : ScriptableObject
+[Serializable]
+public class Station
 {
-    enum Type
-    {
-        Mine,
-        Fabric,
-        Collector
-    }
+    [SerializeField] private string _uid;
     
-    [SerializeField] private string name;
+    [SerializeField] private Image _icon;
     
-    [SerializeField] private Image icon;
-    
-    [SerializeField] private int amountCells;
-    
-    [SerializeField] private List<Recipe> recipes;
+    [SerializeField] private int _amountCells;
 
-    private static int costCell = 40;
-
+    [SerializeField] private StationTypes.StationType _stationType;
+    
+    [SerializeField] private List<Recipe> _recipes;
+    
     private int unlockedCells;
 }

@@ -7,15 +7,18 @@ using UnityEngine;
 [Serializable]
 public class WindowsManager: MonoBehaviour
 {
+    private List<Window> _windows;
 
-    //[SerializeField] private List<Windows> _windows;
-    private List<Windows> _windows;
-
-    public void Awake()
+    void Start()
     {
-        var _window1 = Window1.GetInstance();
-        _windows.Add(_window1);
-        _windows.Add(Window2.GetInstance());
+        _windows = new List<Window>();
+        _windows.Add(Window1.Instance);
+        _windows.Add(Window2.Instance);
+
+        foreach (var window in _windows)
+        {
+            window.Hide();
+        }
     }
 
     public void Show(string uid)
@@ -30,20 +33,17 @@ public class WindowsManager: MonoBehaviour
         _window.Hide();
     }
 
-    private Windows FindWindow(string uid)
+    private Window FindWindow(string uid)
     {
 
-        /*
         foreach (var window in _windows)
         {
-            if (window.uid == uid)
+            if (window._uid == uid)
             {
-                Windows _ourWindow = Window1.GetInstance();
-                
+                return window;
             }
+            
         }
-        */
-
         return null;
     }
 

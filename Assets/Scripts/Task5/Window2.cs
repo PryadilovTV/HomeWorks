@@ -5,20 +5,14 @@ using UnityEngine;
 
 namespace Task5
 {
-    public class Window2 : Windows
+    public class Window2 : Window
     {
-        private static Window2 instance;
-        public string uid = "23456";
-        public static Window2 GetInstance()
-        {
-            if (instance == null)
-            {
-                instance = new Window2();
-            }
+        public static Window2 Instance { get; private set; }
 
-            return instance;
+        private void Awake()
+        {
+            Instance = this;
         }
-    
     }
 
 }
