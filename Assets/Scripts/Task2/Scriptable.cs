@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Linq;
 
-[CreateAssetMenu(menuName = "Settings/TestData", fileName = "Our object")]   
+[CreateAssetMenu(menuName = "Settings/Task2/TestData", fileName = "Our object")]   
 public class Scriptable : ScriptableObject
    {
        public List<OurData> listData;
