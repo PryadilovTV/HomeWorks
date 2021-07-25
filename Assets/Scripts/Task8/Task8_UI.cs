@@ -5,7 +5,7 @@ using DG.Tweening;
 
 
 
-public class Task8 : MonoBehaviour
+public class Task8_UI : MonoBehaviour
 {
     public int Pause;
     public Transform Target;
