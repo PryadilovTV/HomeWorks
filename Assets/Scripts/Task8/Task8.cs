@@ -34,12 +34,14 @@ public class Task8 : MonoBehaviour
         {
             transform.DOKill();
             
-            transform.DOMove(Input.mousePosition, Duration);
+            //transform.DOMove(Input.mousePosition, Duration);
 
-            
-            //var screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-            //var worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //transform.DOMove(new Vector3(worldPosition.x, worldPosition.y), Duration);
+            Debug.Log(Input.mousePosition);
+            var screenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z);
+            Debug.Log(screenPosition);
+            var worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+            Debug.Log(worldPosition);
+            transform.DOMove(new Vector3(worldPosition.x, worldPosition.y, transform.position.z), Duration);
             
             
         }    
