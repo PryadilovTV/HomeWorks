@@ -13,7 +13,8 @@ public class ShopCell : IShopCell
     
     private void Buy()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false));
+        Destroy(gameObject);
 
         var task10 = GameObject.Find("Task10");
         task10.GetComponent<FormManager>().ShowGratz();
