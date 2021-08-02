@@ -13,23 +13,15 @@ public abstract class IShopCell : AbstractShopCell
 
     //private Item _item;
     
-    public void FillGameObject(Item item)
-    {
-        //_item = item;
-        _name.text = item.Name;
-        _price.text = item.Price.ToString();
-        _image.sprite = item.Icon;
-    }
-    
     private void Start()
     {
         _button.onClick.AddListener(Buy);    
     }
 
-    private void Buy()
+    public virtual void Buy()
     {
-        gameObject.SetActive(false);
-
+        //gameObject.SetActive(false));
+        Destroy(gameObject);
     }
     
 }

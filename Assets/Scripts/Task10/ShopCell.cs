@@ -6,12 +6,16 @@ using UnityEngine.UI;
 public class ShopCell : IShopCell
 {
 
-    private void Start()
+    public void FillGameObject(Item item)
     {
-        _button.onClick.AddListener(Buy);    
+        //_item = item;
+        _name.text = item.Name;
+        _price.text = item.Price.ToString();
+        _image.sprite = item.Icon;
     }
+
     
-    private void Buy()
+    public override void Buy()
     {
         //gameObject.SetActive(false));
         Destroy(gameObject);
@@ -19,6 +23,5 @@ public class ShopCell : IShopCell
         var task10 = GameObject.Find("Task10");
         task10.GetComponent<FormManager>().ShowGratz();
     }
-
 
 }
