@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopCell : IShopCell
+public class ShopCell : AbstractShopCell
 {
 
     public void FillGameObject(Item item)
@@ -13,8 +13,8 @@ public class ShopCell : IShopCell
         _price.text = item.Price.ToString();
         _image.sprite = item.Icon;
     }
-
     
+   
     public override void Buy()
     {
         //gameObject.SetActive(false));
