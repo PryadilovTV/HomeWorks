@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public abstract class AbstractShopCell : MonoBehaviour, IShopCell
 {
-
     public Button _button;
     
     public Text _name;

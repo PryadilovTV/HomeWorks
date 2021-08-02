@@ -7,8 +7,7 @@ namespace Task10
 {
     interface IShopCell
     {
-   
-    
+
         void Buy();
     }
 }
