@@ -10,5 +10,5 @@ public class Item
    public string Uid;
    public string Name;
    public Sprite Icon;
-   public int Cost;
+   public int Price;
 }

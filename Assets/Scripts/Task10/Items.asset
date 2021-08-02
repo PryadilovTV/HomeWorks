@@ -16,8 +16,64 @@ MonoBehaviour:
   - Uid: 1
     Name: qwert
     Icon: {fileID: 21300000, guid: ff2313b8a39bde24cb22be451d1bffaf, type: 3}
-    Cost: 50
+    Price: 5
+  - Uid: 2
+    Name: asdf
+    Icon: {fileID: 21300000, guid: 00c01a67138e7de4e88f92366cb9b8e4, type: 3}
+    Price: 10
+  - Uid: 2
+    Name: asdf
+    Icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    Price: 10
   - Uid: 2
     Name: asdf
     Icon: {fileID: 21300000, guid: 76a75c9d8063976458f7eb97da995aa4, type: 3}
-    Cost: 100
+    Price: 10
+  - Uid: 2
+    Name: asdf
+    Icon: {fileID: 21300000, guid: 76a75c9d8063976458f7eb97da995aa4, type: 3}
+    Price: 10
+  - Uid: 2
+    Name: asdf
+    Icon: {fileID: 21300000, guid: 76a75c9d8063976458f7eb97da995aa4, type: 3}
+    Price: 10
+  - Uid: 2
+    Name: asdf
+    Icon: {fileID: 21300000, guid: 76a75c9d8063976458f7eb97da995aa4, type: 3}
+    Price: 10
+  - Uid: 2
+    Name: asdf
+    Icon: {fileID: 21300000, guid: 76a75c9d8063976458f7eb97da995aa4, type: 3}
+    Price: 10
+  - Uid: 2
+    Name: asdf
+    Icon: {fileID: 21300000, guid: 76a75c9d8063976458f7eb97da995aa4, type: 3}
+    Price: 10
+  - Uid: 2
+    Name: asdf
+    Icon: {fileID: 21300000, guid: 76a75c9d8063976458f7eb97da995aa4, type: 3}
+    Price: 10
+  - Uid: 2
+    Name: asdf
+    Icon: {fileID: 21300000, guid: 76a75c9d8063976458f7eb97da995aa4, type: 3}
+    Price: 10
+  - Uid: 2
+    Name: asdf
+    Icon: {fileID: 21300000, guid: 76a75c9d8063976458f7eb97da995aa4, type: 3}
+    Price: 10
+  - Uid: 2
+    Name: asdf
+    Icon: {fileID: 21300000, guid: 76a75c9d8063976458f7eb97da995aa4, type: 3}
+    Price: 10
+  - Uid: 2
+    Name: asdf
+    Icon: {fileID: 21300000, guid: 76a75c9d8063976458f7eb97da995aa4, type: 3}
+    Price: 10
+  - Uid: 2
+    Name: asdf
+    Icon: {fileID: 21300000, guid: 76a75c9d8063976458f7eb97da995aa4, type: 3}
+    Price: 10
+  - Uid: 2
+    Name: asdf
+    Icon: {fileID: 21300000, guid: 76a75c9d8063976458f7eb97da995aa4, type: 3}
+    Price: 10
