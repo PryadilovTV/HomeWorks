@@ -21,7 +21,7 @@ public abstract class AbstractShopCell : MonoBehaviour, IShopCell
     
     private void Start()
     {
-        _button.onClick.AddListener(Buy);    
+       // _button.onClick.AddListener(Buy);    
     }
 
 

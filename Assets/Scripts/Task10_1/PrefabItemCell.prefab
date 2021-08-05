@@ -165,7 +165,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3424190814291928226}
-  - component: {fileID: 3163001987642296250}
   m_Layer: 0
   m_Name: PrefabItemCell
   m_TagString: Untagged
@@ -193,22 +192,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3163001987642296250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3270549132065932538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33ed7f0746378f44082a7b331ea57516, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _button: {fileID: 2952632888448938250}
-  _name: {fileID: 8727410935213746464}
-  _price: {fileID: 7814739696067480597}
-  _image: {fileID: 7672887288139372656}
 --- !u!1 &3359110758942063358
 GameObject:
   m_ObjectHideFlags: 0

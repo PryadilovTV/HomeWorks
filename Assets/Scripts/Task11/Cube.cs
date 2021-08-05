@@ -1,17 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
-    [SerializeField] private float _limitScale;
-    void Update()
+    private Action<string> _onClick;
+    public string Uid;
+
+    public void Listen(Action<string> onClick)
     {
-        var changeScale = new Vector3(0.005f, 0.005f, 0.005f);
-        //var changeRota
-        
-        transform.localScale += changeScale;
-        
-        if (transform.localScale.x >= _limitScale) Destroy(gameObject);
+        _onClick = onClick;
+    }
+    
+    private void OnMouseDown()
+    {
+        _onClick?.Invoke(Uid);
     }
 }

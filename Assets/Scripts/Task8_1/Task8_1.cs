@@ -5,7 +5,7 @@ using DG.Tweening;
 
 
 
-public class Task8 : MonoBehaviour
+public class Task8_1 : MonoBehaviour
 {
     public int Pause;
     public Transform Target;
@@ -13,7 +13,7 @@ public class Task8 : MonoBehaviour
     
     void Start()
     {
-        DOVirtual.DelayedCall(Pause, JumpPuppy);
+        //DOVirtual.DelayedCall(Pause, JumpPuppy);
     }
 
     void JumpPuppy()
