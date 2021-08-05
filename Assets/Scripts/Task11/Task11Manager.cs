@@ -34,7 +34,7 @@ public class Task11Manager : MonoBehaviour
         
         var newCube = Instantiate(_cubePrefab);
         newCube.transform.position = pos;
-        newCube.transform.Rotate((float)Random.Range(0,90), (float)Random.Range(0,90), (float)Random.Range(0,90));
+        newCube.transform.Rotate((float)Random.Range(0,360), (float)Random.Range(0,360), (float)Random.Range(0,360));
         newCube.Uid = index.ToString();
         
         newCube.Listen(OnCubeClick);
@@ -52,11 +52,15 @@ public class Task11Manager : MonoBehaviour
 
             cube.transform.localScale += changeScale;
         }
+        
         Destroy(cube.gameObject);
     }
 
-    private static void OnCubeClick(string uid)
+    private static void OnCubeClick(string uid, Cube cube)
     {
         Debug.LogAssertion("Click on " + uid);
+        
+        cube.GetComponent<Rigidbody>().AddForce(cube.transform.forward * 1000);
+        cube.GetComponent<Rigidbody>().useGravity = true;
     }
 }
