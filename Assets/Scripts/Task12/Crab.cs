@@ -28,7 +28,7 @@ public class Crab : MonoBehaviour
         _animator.SetBool("MoveForwards", true);
         _animator.SetBool("MoveBackwards", false);
         _animator.SetBool("Idle", false);
-        _animator.SetBool("Attack", false);
+        //_animator.SetBool("Attack", false);
 
     }
     private void MoveBackwards()
@@ -51,6 +51,7 @@ public class Crab : MonoBehaviour
     {
         if (hit.gameObject.tag == "Tree")
         {
+            //Debug.LogAssertion("attack");
             _animator.SetBool("Attack", true);
         }
     }
