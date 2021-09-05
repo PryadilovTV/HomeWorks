@@ -5,7 +5,7 @@ using UnityEngine;
 public class Task14 : MonoBehaviour
 {
     [SerializeField] private ScriptableData _scriptable;
-    [SerializeField] private Data _data;
+    [SerializeField] private DataClass _data;
     void Start()
     {
         /*
@@ -24,13 +24,13 @@ public class Task14 : MonoBehaviour
         var dataFloatLoad = SaverLoader.LoadDataFloat("dataFloat");
         Debug.Log($"Float: {dataFloat} => {dataFloatLoad}");
         
-        _data = new Data();
+        _data = new DataClass();
         SaverLoader.SaveData(_data, "_data");
-        _data = SaverLoader.LoadData<Data>("_data");
-        */
+        _data = SaverLoader.LoadData<DataClass>("_data");
+       */ 
 
-        /*
         
+        /*
         var listData = new List<string>();
         listData.Add("qwer");
         listData.Add("asdf");

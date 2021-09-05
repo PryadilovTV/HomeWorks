@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Data
+public class DataClass
 {
     public string Uid = "asdf";
     public int Count = 1234;
